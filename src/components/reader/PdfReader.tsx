@@ -140,7 +140,7 @@ export function PdfReader({ documentId, initialPage = 1, onProgress }: PdfReader
 
   return (
     <div className="flex h-full flex-col">
-      <div className="flex items-center justify-between border-b border-gray-800 px-4 py-2">
+      <div className="flex items-center justify-between border-b border-border px-4 py-2">
         <div className="flex items-center gap-1">
           {viewMode === "page" && (
             <>
@@ -175,20 +175,26 @@ export function PdfReader({ documentId, initialPage = 1, onProgress }: PdfReader
         </div>
       </div>
 
-      <div className="flex-1 overflow-auto bg-gray-900 p-4">
-        {!ready ? (
-          <div className="flex h-full items-center justify-center">
-            <div className="flex flex-col items-center gap-3">
-              <FileText className="h-8 w-8 animate-pulse text-accent" />
-              <p className="text-sm text-muted-foreground">Loading PDF...</p>
+      <div className="flex-1 overflow-hidden">
+        <div className="mx-auto flex h-full w-full justify-center px-3 pb-3 pt-4 sm:px-4 sm:pb-4">
+          <div className="reader-page-card flex h-full w-full max-w-[900px] overflow-hidden rounded-[2rem] transition-all duration-300">
+            <div className="reader-page-sheet flex-1 overflow-auto bg-transparent p-4 sm:p-6">
+              {!ready ? (
+                <div className="flex h-full min-h-[60vh] items-center justify-center">
+                  <div className="flex flex-col items-center gap-3">
+                    <FileText className="h-8 w-8 animate-pulse text-accent" />
+                    <p className="text-sm text-muted-foreground">Loading PDF...</p>
+                  </div>
+                </div>
+              ) : (
+                <div
+                  ref={containerRef}
+                  className={viewMode === "page" ? "flex h-full items-center justify-center" : "space-y-6"}
+                />
+              )}
             </div>
           </div>
-        ) : (
-          <div
-            ref={containerRef}
-            className={viewMode === "page" ? "flex h-full items-center justify-center" : "space-y-4"}
-          />
-        )}
+        </div>
       </div>
     </div>
   );

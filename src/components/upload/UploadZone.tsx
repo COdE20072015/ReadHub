@@ -168,7 +168,7 @@ export function UploadZone() {
           )}
         </div>
 
-        <h2 className="text-lg font-semibold text-white">
+        <h2 className="text-lg font-semibold text-foreground">
           {!config
             ? "Loading..."
             : uploading
@@ -192,19 +192,19 @@ export function UploadZone() {
               key={result.fileName}
               className={`flex items-center gap-3 rounded-lg border p-3 ${
                 result.success
-                  ? "border-green-800/50 bg-green-900/10"
-                  : "border-red-800/50 bg-red-900/10"
+                  ? "border-emerald-800/50 bg-emerald-900/10"
+                  : "border-rose-800/50 bg-rose-900/10"
               }`}
             >
               {result.success ? (
-                <CheckCircle className="h-5 w-5 text-green-400" />
+                <CheckCircle className="h-5 w-5 text-emerald-400" />
               ) : (
-                <AlertCircle className="h-5 w-5 text-red-400" />
+                <AlertCircle className="h-5 w-5 text-rose-400" />
               )}
               <div className="min-w-0 flex-1">
-                <p className="truncate text-sm font-medium text-white">{result.fileName}</p>
+                <p className="truncate text-sm font-medium text-foreground">{result.fileName}</p>
                 {result.error && (
-                  <p className="text-xs text-red-400">{result.error}</p>
+                  <p className="text-xs text-rose-400">{result.error}</p>
                 )}
               </div>
               <FileText className="h-4 w-4 text-muted-foreground" />

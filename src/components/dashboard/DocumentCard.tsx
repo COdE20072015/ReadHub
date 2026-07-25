@@ -25,11 +25,11 @@ export function DocumentCard({ document: doc, view }: DocumentCardProps) {
     return (
       <Link
         href={`/reader/${doc.id}`}
-        className="group flex items-center gap-4 rounded-xl border border-gray-800 bg-surface-raised p-3 transition-colors hover:border-gray-700 hover:bg-surface-overlay"
+        className="group flex items-center gap-4 rounded-xl border border-border bg-surface-raised p-3 transition-colors hover:border-border hover:bg-surface-overlay"
       >
         <CoverThumbnail doc={doc} size="sm" />
         <div className="min-w-0 flex-1">
-          <h3 className="truncate font-medium text-white group-hover:text-accent">
+          <h3 className="truncate font-medium text-foreground group-hover:text-accent">
             {doc.title}
           </h3>
           <p className="truncate text-sm text-muted-foreground">
@@ -57,12 +57,12 @@ export function DocumentCard({ document: doc, view }: DocumentCardProps) {
     >
       <div className="relative aspect-[2/3] overflow-hidden bg-surface-overlay">
         <CoverThumbnail doc={doc} size="lg" />
-        <span className="absolute right-2 top-2 rounded-md bg-black/60 px-2 py-0.5 text-xs font-medium uppercase text-white">
+        <span className="absolute right-2 top-2 rounded-md bg-surface/70 px-2 py-0.5 text-xs font-medium uppercase text-foreground">
           {doc.format}
         </span>
       </div>
       <div className="flex flex-1 flex-col p-3">
-        <h3 className="line-clamp-2 font-medium text-white group-hover:text-accent">
+        <h3 className="line-clamp-2 font-medium text-foreground group-hover:text-accent">
           {doc.title}
         </h3>
         {doc.author && (

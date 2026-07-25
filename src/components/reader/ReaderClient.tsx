@@ -90,7 +90,7 @@ export function ReaderClient({ documentId }: ReaderClientProps) {
 
   return (
     <div className="fixed inset-0 top-14 flex flex-col bg-surface">
-      <div className="flex items-center justify-between border-b border-gray-800 px-4 py-2">
+      <div className="flex items-center justify-between border-b border-border px-4 py-2">
         <div className="flex items-center gap-3 min-w-0">
           <Link href="/dashboard">
             <Button variant="ghost" size="sm" aria-label="Back to library">
@@ -98,7 +98,7 @@ export function ReaderClient({ documentId }: ReaderClientProps) {
             </Button>
           </Link>
           <div className="min-w-0">
-            <h1 className="truncate text-sm font-medium text-white">{document.title}</h1>
+            <h1 className="truncate text-sm font-medium text-foreground">{document.title}</h1>
             {document.author && (
               <p className="truncate text-xs text-muted-foreground">{document.author}</p>
             )}

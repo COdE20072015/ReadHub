@@ -75,7 +75,7 @@ export function DashboardClient() {
     <div>
       <div className="mb-6 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-white">Your Library</h1>
+          <h1 className="text-2xl font-bold text-foreground">Your Library</h1>
           <p className="text-sm text-muted-foreground">
             {documents.length} {documents.length === 1 ? "item" : "items"} ·{" "}
             {formatFileSize(storageUsed)} used
@@ -123,7 +123,7 @@ export function DashboardClient() {
 
 function EmptyState({ hasSearch }: { hasSearch: boolean }) {
   return (
-    <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-gray-700 py-16 text-center">
+    <div className="flex flex-col items-center justify-center rounded-2xl border border-border py-16 text-center">
       <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-accent/10">
         {hasSearch ? (
           <BookOpen className="h-8 w-8 text-accent" />
@@ -131,7 +131,7 @@ function EmptyState({ hasSearch }: { hasSearch: boolean }) {
           <Upload className="h-8 w-8 text-accent" />
         )}
       </div>
-      <h3 className="text-lg font-medium text-white">
+      <h3 className="text-lg font-medium text-foreground">
         {hasSearch ? "No results found" : "Your library is empty"}
       </h3>
       <p className="mt-2 max-w-sm text-sm text-muted-foreground">

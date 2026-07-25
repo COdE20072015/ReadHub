@@ -59,7 +59,7 @@ export default function RegisterPage() {
           <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-accent/20">
             <BookOpen className="h-7 w-7 text-accent" />
           </div>
-          <h1 className="text-2xl font-bold text-white">Create your account</h1>
+          <h1 className="text-2xl font-bold text-foreground">Create your account</h1>
           <p className="mt-2 text-sm text-muted-foreground">
             Start building your personal library
           </p>

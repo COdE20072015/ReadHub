@@ -2,18 +2,20 @@
 
 import Link from "next/link";
 import { useSession, signOut } from "next-auth/react";
-import { BookOpen, Upload, LogOut } from "lucide-react";
+import { BookOpen, Upload, LogOut, Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+import { useTheme } from "@/components/theme/ThemeProvider";
 
 export function AppHeader() {
   const { data: session } = useSession();
+  const { theme, toggleTheme } = useTheme();
 
   return (
-    <header className="sticky top-0 z-50 border-b border-gray-800 bg-surface/95 backdrop-blur-sm">
+    <header className="sticky top-0 z-50 border-b border-border bg-surface/95 backdrop-blur-sm">
       <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-4 sm:px-6">
         <Link href="/dashboard" className="flex items-center gap-2">
           <BookOpen className="h-6 w-6 text-accent" />
-          <span className="text-lg font-semibold text-white">ReadHub</span>
+          <span className="text-lg font-semibold text-foreground">ReadHub</span>
         </Link>
 
         <div className="flex items-center gap-3">
@@ -28,6 +30,14 @@ export function AppHeader() {
               {session.user.name ?? session.user.email}
             </span>
           )}
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={toggleTheme}
+            aria-label="Toggle theme"
+          >
+            {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+          </Button>
           <Button
             variant="ghost"
             size="sm"
