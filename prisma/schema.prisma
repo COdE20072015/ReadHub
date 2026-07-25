@@ -1,0 +1,68 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String     @id @default(cuid())
+  email        String     @unique
+  passwordHash String
+  displayName  String?
+  theme        String     @default("dark")
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  documents    Document[]
+  collections  Collection[]
+}
+
+model Document {
+  id            String           @id @default(cuid())
+  userId        String
+  user          User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title         String
+  author        String?
+  format        String
+  fileName      String
+  filePath      String
+  fileSize      Int
+  pageCount     Int?
+  coverPath     String?
+  tags          String           @default("")
+  seriesName    String?
+  status        String           @default("ready")
+  createdAt     DateTime         @default(now())
+  updatedAt     DateTime         @updatedAt
+  lastReadAt    DateTime?
+  progress      ReadingProgress?
+  collectionId  String?
+  collection    Collection?      @relation(fields: [collectionId], references: [id], onDelete: SetNull)
+
+  @@index([userId])
+  @@index([userId, lastReadAt])
+}
+
+model ReadingProgress {
+  id         String   @id @default(cuid())
+  documentId String   @unique
+  document   Document @relation(fields: [documentId], references: [id], onDelete: Cascade)
+  position   String
+  percentage Float    @default(0)
+  page       Int?
+  totalPages Int?
+  updatedAt  DateTime @updatedAt
+}
+
+model Collection {
+  id        String     @id @default(cuid())
+  userId    String
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name      String
+  createdAt DateTime   @default(now())
+  documents Document[]
+
+  @@index([userId])
+}
