@@ -32,7 +32,7 @@ export async function GET(
     ".webp": "image/webp",
   };
 
-  return new NextResponse(buffer, {
+  return new NextResponse(new Uint8Array(buffer), {
     headers: {
       "Content-Type": contentTypes[ext] ?? "image/jpeg",
       "Cache-Control": "private, max-age=86400",
