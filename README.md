@@ -32,7 +32,7 @@ npx prisma migrate deploy
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
+Open ((http://read-hub-psi.vercel.app/)).
 
 For local dev, leave `STORAGE_PROVIDER=local` (default). Files are stored in `./storage`.
 
