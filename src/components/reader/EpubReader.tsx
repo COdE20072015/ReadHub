@@ -30,7 +30,7 @@ export function EpubReader({ documentId, initialPosition, onProgress }: EpubRead
   const [fontSize, setFontSize] = useState(110);
   const [theme, setTheme] = useState<Theme>("dark");
   const [readingMode, setReadingMode] = useState<ReadingMode>("paginated");
-  const saveTimerRef = useRef<ReturnType<typeof setTimeout>>();
+  const saveTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const saveProgress = useCallback(
     (cfi: string, percentage: number) => {
@@ -56,14 +56,14 @@ export function EpubReader({ documentId, initialPosition, onProgress }: EpubRead
       }
 
       const arrayBuffer = await response.arrayBuffer();
-      const book = epub(arrayBuffer);
+      const book = epub(arrayBuffer) as any;
       bookRef.current = book;
 
       await book.ready;
       if (destroyed || !viewerRef.current) return;
 
-      if (!book.package && (book as any).packaging) {
-        (book as any).package = (book as any).packaging;
+      if (!book.package && book.packaging) {
+        book.package = book.packaging;
       }
 
       const rendition = book.renderTo(viewerRef.current, {

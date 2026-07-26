@@ -33,7 +33,7 @@ export async function GET(
     ".cbr": "application/x-cbr",
   };
 
-  return new NextResponse(buffer, {
+  return new NextResponse(new Uint8Array(buffer), {
     headers: {
       "Content-Type": contentTypes[ext] ?? "application/octet-stream",
       "Content-Disposition": `inline; filename="${document.fileName}"`,

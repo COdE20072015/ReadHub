@@ -29,7 +29,7 @@ export function PdfReader({ documentId, initialPage = 1, onProgress }: PdfReader
   const [totalPages, setTotalPages] = useState(0);
   const [scale, setScale] = useState(1.2);
   const [viewMode, setViewMode] = useState<ViewMode>("page");
-  const saveTimerRef = useRef<ReturnType<typeof setTimeout>>();
+  const saveTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const saveProgress = useCallback(
     (page: number, total: number) => {
